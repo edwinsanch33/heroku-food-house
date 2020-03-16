@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import RandomRecipe from './components/RandomRecipe';
 import About from './components/About';
+import DishDetails from './components/DishDetails'
 
 const FoodHouse = () => {
 
@@ -52,13 +53,24 @@ const FoodHouse = () => {
           <Route path="/random">
             <RandomRecipe />
           </Route>
+          <Route path="/:id">
+            <DishDetails />
+          </Route>
           <Route exact path="/">
           <SearchForm setSearch={setSearch} initialPlaceholder={search} />
-            <div className="container">
-              {data.hits && data.hits.length
-                ? data.hits.map(meal => <DishCard key={meal.idMeal} meal={meal} />)
-                : "Nothing found :-/"}
-            </div>
+
+          <div className="container">
+               {data.hits && data.hits.length
+                 ? data.hits.map(meal =>
+                  <Link to={{
+                    pathname: `${meal.idMeal}`
+                   }}>
+                   <DishCard key={meal.idMeal} meal={meal}>
+                     <DishDetails id={meal.idMeal} />
+                   </DishCard>
+                 </Link>)
+                 : "Nothing found :-/"}
+             </div>
           </Route>
         </Switch>
       </div>
