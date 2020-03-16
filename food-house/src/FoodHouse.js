@@ -53,7 +53,7 @@ const FoodHouse = () => {
             <RandomRecipe />
           </Route>
           <Route exact path="/">
-            <SearchForm />
+          <SearchForm setSearch={setSearch} initialPlaceholder={search} />
             <div className="container">
               {data.hits && data.hits.length
                 ? data.hits.map(meal => <DishCard key={meal.idMeal} meal={meal} />)
