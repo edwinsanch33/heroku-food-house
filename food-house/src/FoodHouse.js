@@ -47,32 +47,25 @@ const FoodHouse = () => {
           </li>
         </ul>
         <Switch>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/random">
-            <RandomRecipe />
-          </Route>
-          <Route path="/:id">
-            <DishDetails />
-          </Route>
-          <Route exact path="/">
-          <SearchForm setSearch={setSearch} initialPlaceholder={search} />
+         <Route path="/about">
+           <About />
+         </Route>
+         <Route path="/random">
+           <RandomRecipe />
+         </Route>
+         <Route path="/:id" component={DishDetails} />
+         <Route exact path="/">
+         <SearchForm setSearch={setSearch} initialPlaceholder={search} />
 
-          <div className="container">
-               {data.hits && data.hits.length
-                 ? data.hits.map(meal =>
-                  <Link to={{
-                    pathname: `${meal.idMeal}`
-                   }}>
-                   <DishCard key={meal.idMeal} meal={meal}>
-                     <DishDetails id={meal.idMeal} />
-                   </DishCard>
-                 </Link>)
-                 : "Nothing found :-/"}
-             </div>
-          </Route>
-        </Switch>
+         <div className="container">
+              {data.hits && data.hits.length
+                ? data.hits.map(meal =>
+                  <DishCard key={meal.idMeal} meal={meal}>
+                  </DishCard>)
+                : "Nothing found :-/"}
+            </div>
+         </Route>
+       </Switch>
       </div>
     </Router>
   );
