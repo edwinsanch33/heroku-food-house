@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios';
 import SearchForm from './components/SearchForm'
@@ -16,7 +16,7 @@ import DishDetails from './components/DishDetails'
 const FoodHouse = () => {
 
   const [data, setData] = useState({ hits: [] })
-  const [search, setSearch] = useState('chicken')
+  const [search, setSearch] = useState('')
 
   const fetchData = async () => {
     const result = await axios(
